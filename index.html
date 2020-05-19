@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>[Talk] Construindo o Way</title>
+
+    <meta
+      name="description"
+      content="A framework for easily creating beautiful presentations using HTML"
+    />
+    <meta name="author" content="Thiago Zanivan Felisberto" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/way.css" id="theme" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css" />
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.type = "text/css";
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? "css/print/pdf.css"
+        : "css/print/paper.css";
+      document.getElementsByTagName("head")[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="reveal">
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h1 class="orange">
+            Way
+          </h1>
+          <p>
+            Arquitetura, tecnologias e<br />
+            desafios técnicos
+          </p>
+        </section>
+
+        <section>
+          <h3>Thiago Zanivan Felisberto</h3>
+          <p>Software Engineer @ Way</p>
+          <a href="www.thiagozf.com">thiagozf.com</a>
+        </section>
+
+        <section>
+          <h2 class="orange">Processo de desenvolvimento</h2>
+          <pre><code class="ts">
+function desenvolvePraNois(ideias: string[]) {
+  let pronto: boolean
+  do {
+    const requisitos = extrairRequisitos(ideias)
+    const tecnologias = selecionarTecnologias(requisitos)
+    const produto = implementar(requisitos, tecnologias)
+    // TODO: automatizar o que for possível!
+    pronto = validar(produto)
+  } while (!pronto) // nunca fica pronto ¯\_(ツ)_/¯
+}
+					</code></pre>
+        </section>
+
+        <section>
+          <h2 class="orange">Fase 1</h2>
+          <p>Extrair requisitos</p>
+        </section>
+
+        <section
+          data-background-image="assets/produto.png"
+          data-transition="slide"
+          data-background-transition="convex"
+          class="left"
+        >
+          <h4 class="fragment orange">Palavras-chave</h4>
+          <ul>
+            <li class="fragment">Plataforma</li>
+            <li class="fragment">Landing pages</li>
+            <li class="fragment">Páginas dinâmicas</li>
+            <li class="fragment">Sem desenvolvedor</li>
+            <li class="fragment">Analytics/dados</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="orange">Requisitos funcionais</h2>
+          <ol>
+            <li>Editor de páginas para usuários não técnicos</li>
+            <li>Renderizador de páginas (server-side)</li>
+            <li>Proxy reverso e roteamento para as páginas</li>
+            <li>Coletar e tratar dados de analytics</li>
+            <li>Templates para facilitar criação de páginas</li>
+            <li>Gerenciamento básico de conta e assinatura</li>
+            <li>Gerenciamento básico de páginas</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2 class="orange">Requisitos não-funcionais</h2>
+          <ol>
+            <li>Modelo SaaS</li>
+            <li>Escalabilidade</li>
+            <li>Custo</li>
+            <li>Disponibilidade</li>
+            <li>Tempo de resposta</li>
+            <li>Time to market</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2 class="orange">Fase 2</h2>
+          <p>Selecionar tecnologias</p>
+        </section>
+
+        <section>
+          <h4 class="orange">Premissas</h4>
+          <ul>
+            <li>Usar a melhor ferramenta para o trabalho</li>
+            <li>
+              Problemas vão acontecer (evite
+              <a href="https://batmanjs.org/">batman.js</a>)
+            </li>
+            <li>Se já está pronto e funciona, use!</li>
+            <li>Ecossistema que já é utilizado pela empresa</li>
+          </ul>
+        </section>
+
+        <section>
+          <img class="stack" src="assets/aws-logo.png" />
+          <img class="stack" src="assets/serverless-logo.jpg" />
+          <img class="stack" src="assets/github-logo.png" />
+          <img class="stack" src="assets/slack-logo.png" />
+          <br />
+          <img class="stack" src="assets/ts-logo.png" />
+          <img class="stack" src="assets/graphql-logo.png" />
+          <img class="stack" src="assets/next-logo.png" />
+          <img class="stack" src="assets/react-logo.png" />
+        </section>
+
+        <section>
+          <img width="100" src="assets/aws-logo.png" />
+          <h3 class="orange">Amazon Web Services</h3>
+
+          <ul>
+            <li>Provedor de serviços cloud</li>
+            <li>Serviços altamente escaláveis</li>
+            <li>Custos baseados em uso (sob demanda)</li>
+          </ul>
+
+          <aside class="notes">
+            <ul>
+              <li>
+                Exemplos de serviços: computação (processamento e memória),
+                armazenamento e bancos de dados
+              </li>
+              <li>
+                Como os serviços são cloud native e foram pensados para o cloud,
+                é altamente escalável
+              </li>
+              <li>Como é sob demanda, custo efetivo (não usa = não paga)</li>
+              <li>
+                Provider mais utilizado (e portanto mais documentação/fórums) e
+                que temos experiência
+              </li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <img width="100" src="assets/lambda-logo.png" />
+          <h4 class="orange">AWS Lambda</h4>
+
+          <ul>
+            <li>
+              Serviço de computação <b class="orange">serverless</b> e
+              <b class="orange">stateless</b>
+            </li>
+            <li>
+              Executa pedaços de código - chamados de
+              <b class="orange">funções Lambda</b> - dentro de containers, que
+              são iniciados sob demanda para responder a eventos
+            </li>
+          </ul>
+
+          <aside class="notes">
+            Serverless se refere a aplicações onde o gerenciamento e alocação de
+            recursos de servidor são completamente gerenciados pelo provedor
+            cloud. Normalmente, a cobrança é feita com base no uso/consumo
+            destes recursos.
+          </aside>
+        </section>
+
+        <section>
+          <img src="assets/lambda-function.png" />
+
+          <aside class="notes">
+            <ul>
+              <li>
+                Context: informações sobre a invocação, função e ambiente de
+                execução
+              </li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <img width="100" src="assets/s3-logo.png" />
+          <h4 class="orange">S3</h4>
+
+          <ul>
+            <li>Amazon Simple Storage Service (<b class="orange">S3</b>)</li>
+            <li>Serviço para armazenamento e recuperação de dados</li>
+            <li>Pode armazenar qualquer coisa</li>
+          </ul>
+
+          <aside class="notes">
+            Textos, objetos JSON, dados - arquivos em geral
+          </aside>
+        </section>
+
+        <section>
+          <img width="100" src="assets/dynamo-logo.png" />
+          <h4 class="orange">DynamoDB</h4>
+
+          <ul>
+            <li>
+              Banco de dados <b class="orange">chave-valor</b> com suporte a
+              estruturas de <b class="orange">documentos</b>
+            </li>
+            <li>Distribuído e replicado globalmente</li>
+            <li>Change Data Capture (CDC)</li>
+            <li>Índices sobre as chaves</li>
+          </ul>
+
+          <aside class="notes">
+            Serverless se refere a aplicações onde o gerenciamento e alocação de
+            recursos de servidor são completamente gerenciados pelo provedor
+            cloud. Normalmente, a cobrança é feita com base no uso/consumo
+            destes recursos.
+          </aside>
+        </section>
+
+        <section data-background-image="assets/aws-diagram.png"></section>
+
+        <section>
+          <img height="100" src="assets/react-logo.png" />
+          <h3 class="orange">React</h3>
+
+          <ul>
+            <li>
+              Modelo de componentes parece ter sido pensado para o nosso caso de
+              uso!
+            </li>
+            <li>Foco em performance de renderização</li>
+            <li>Suporte a server-side rendering</li>
+            <li>Comunidade de milhões de desenvolvedores</li>
+          </ul>
+        </section>
+
+        <section>
+          <pre><code class="hljs" data-trim data-line-numbers="1|4|9|4,8-11">
+import React, { useState } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked {count} times&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+					</code></pre>
+        </section>
+
+        <section>
+          <img height="100" src="assets/next-logo.png" />
+          <h3 class="orange">Next.js</h3>
+
+          <ul>
+            <li>
+              Framework para construção de aplicações React (alternativa ao
+              create-react-app)
+            </li>
+            <li>Next.js 🧡 Serverless</li>
+            <li>Torna a implementação de SSR trivial</li>
+            <li>Altamente customizável</li>
+          </ul>
+        </section>
+
+        <section>
+          <pre><code class="js" data-trim data-line-numbers="3|4-9|12">
+import React, { useEffect } from 'react'
+
+export const getServerSideProps = async ({ query }) => {
+  const { url = 'home' } = query
+  return {
+    props: {
+      page: getPage(url)
+    }
+  }
+}
+
+export default ({ page }) => { ... }
+					</code></pre>
+        </section>
+
+        <section>
+          <img height="100" src="assets/ts-logo.png" />
+          <h3 class="orange">TypeScript</h3>
+
+          <ul>
+            <li>Linguagem de programação back e front-end</li>
+            <li>TS 🧡 React, Next.js e Serverless</li>
+            <li>
+              Tipos, que em latim significa "menos tempo perdido com bugs
+              estúpidos"
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <img height="100" src="assets/graphql-logo.png" />
+          <h3 class="orange">GraphQL</h3>
+
+          <ul>
+            <li><em>Query language</em> para APIs</li>
+            <li>Alternativa ao REST</li>
+            <li>Schema funciona como um contrato entre o cliente o servidor</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3 class="orange">Schema</h3>
+          <pre><code class="graphql" data-trim data-noescape>
+type Item {
+  name: String!
+  price: Int!
+  quantity: Int
+}
+
+type Query {
+  items: [Item]
+}
+
+type Mutation {
+  buyItem(input: BuyItemInput!): BuyItemOutput!
+}
+					</code></pre>
+        </section>
+
+        <section>
+          <h3 class="orange">Queries</h3>
+          <p>Equivalente ao <span class="orange">GET</span> do REST</p>
+          <pre><code class="graphql" data-trim data-noescape>
+query {
+  items {
+    name
+    price
+  }
+}
+					</code></pre>
+        </section>
+
+        <section>
+          <h3 class="orange">Queries</h3>
+          <pre><code class="js" data-trim data-noescape>
+{
+  "data": {
+    "items": [
+      {
+        "name": "Poké Ball",
+        "price": "200"
+      }, 
+      {
+        "name": "Super Potion",
+        "price": "200"
+      }
+    ]
+  }
+}
+					</code></pre>
+        </section>
+
+        <section>
+          <h3 class="orange">Mutation</h3>
+          <p>
+            Equivalente a
+            <span class="orange">POST - PUT - PATCH - DELETE</span>
+          </p>
+          <pre><code class="graphql" data-trim data-noescape>
+mutation {
+  buyItem(input: { name: 'Poké Ball', quantity: 10}) {
+    success
+  }
+}
+					</code></pre>
+        </section>
+
+        <section>
+          <h2 class="orange">Fase 3</h2>
+          <p>Implementar</p>
+        </section>
+
+        <section>
+          <p>{ hora de mostrar código }</p>
+        </section>
+
+        <section>
+          <h2 class="orange">Fase 4</h2>
+          <p>Deploy e automação</p>
+        </section>
+
+        <section>
+          <img height="100" src="assets/serverless-logo.jpg" />
+          <h3 class="orange">Serverless</h3>
+
+          <ul>
+            <li>Framework para desenvolvimento de soluções serverless</li>
+            <li>Infra como código (YAML + JavaScript)</li>
+            <li>Modelo de componentes</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3 class="orange">Serverless</h3>
+          <pre><code class="yml" data-trim data-noescape>
+name: meu-app-serverless
+
+db:
+  component: @serverless/dynamodb@2.0.1
+
+website:
+  component: @serverless/website@2.0.5
+  inputs:
+    code: ./src
+    env:
+      DYNAMO_TABLE: ${outputs:${stage}:${app}:db.name}
+					</code></pre>
+        </section>
+
+        <section>
+          <h3 class="orange">Serverless</h3>
+          <pre><code class="js" data-trim data-noescape>
+// serverless.js
+const { Component } = require('@serverless/core')
+const website = require('@serverless/website')
+
+class Blog extends Component {
+  async default(inputs) {
+    // Algum tratamento sobre os inputs...
+    const outputs = await website({ code: './blog' })
+    return outputs
+  }
+}
+					</code></pre>
+        </section>
+
+        <section>
+          <img height="100" src="assets/github-logo.png" />
+          <h3 class="orange">GitHub</h3>
+
+          <ul>
+            <li>Controle de releases, environments e deploys</li>
+            <li>Integração contínua (CI) através do Actions</li>
+          </ul>
+        </section>
+
+        <section>
+          <img height="100" src="assets/slack-logo.png" />
+          <h3 class="orange">Slack</h3>
+
+          <ul>
+            <li>Hub de comunicação da equipe</li>
+            <li>Central de comandos (Way Slack Bot)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="orange">What's next?</h2>
+        </section>
+
+        <section data-background-image="assets/data-lake.png"></section>
+
+        <section>
+          <div>
+            <h2 class="orange">Obrigado!</h2>
+            <img
+              height="200"
+              style="right: 0; top: 0"
+              src="assets/qrcode.png"
+            />
+          </div>
+        </section>
+
+        <p class="footer orange">@thiagozf</p>
+      </div>
+    </div>
+
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        center: true,
+        hash: true,
+
+        transition: "fade", // none/fade/slide/convex/concave/zoom
+        backgroundTransition: "fade",
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          {
+            src: "plugin/markdown/marked.js",
+            condition: function() {
+              return !!document.querySelector("[data-markdown]");
+            }
+          },
+          {
+            src: "plugin/markdown/markdown.js",
+            condition: function() {
+              return !!document.querySelector("[data-markdown]");
+            }
+          },
+          { src: "plugin/highlight/highlight.js" },
+          { src: "plugin/search/search.js", async: true },
+          { src: "plugin/zoom-js/zoom.js", async: true },
+          { src: "plugin/notes/notes.js", async: true }
+        ]
+      });
+    </script>
+  </body>
+</html>
