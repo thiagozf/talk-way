@@ -54,33 +54,108 @@
             Arquitetura, tecnologias e<br />
             desafios técnicos
           </p>
+
+          <aside class="notes">
+            <ul>
+              <li>
+                Testar o som. Explicar que está sem microfone e está usando
+                áudio do PC xD
+              </li>
+              <li>
+                Convite do Diego para falar sobre o processo de desenvolvimento
+                do Way e compartilhar aquilo que aprendi sobre as tecnologias
+                que utilizamos na sua construção.
+              </li>
+              <li>
+                A ideia é que isso seja uma talk e não uma apresentação. Começo
+                a engasgar sozinho e tossir depois de meia hora falando.
+                Sintam-se à vontade para me interromper se tiverem qualquer
+                dúvida ou quiserem complementar o assunto com experiências
+                próprias.
+              </li>
+              <li>
+                Não precisa se preocupar em anotar nada, o link para a
+                apresentação vai ser disponibilizado nos slides finais
+              </li>
+            </ul>
+          </aside>
         </section>
 
         <section>
           <h3>Thiago Zanivan Felisberto</h3>
           <p>Software Engineer @ Way</p>
           <a href="www.thiagozf.com">thiagozf.com</a>
+
+          <aside class="notes">
+            <ul>
+              <li>
+                Todos vocês me conhecem, mas a ideia deste slide é falar um
+                pouco sobre minha experiência.
+              </li>
+              <li>
+                Dois anos em uma empresa precursora em oferecer serviços cloud
+                como liderança técnica de equipe. Aprender com erros e acertos,
+                entendendo o que funciona na prática.
+              </li>
+              <li>
+                Impacto das nossas decisões como programadores e profissionais
+                da área de software. Uma pequena decisão pode trazer grandes
+                consequências, tanto para a empresa quanto para o usuário. (Ex.:
+                custo de selecionar tecnologia A ou B, custo de um erro de
+                programação, etc)
+              </li>
+            </ul>
+          </aside>
         </section>
 
         <section>
           <h2 class="orange">Processo de desenvolvimento</h2>
           <pre><code class="ts">
+/**
+ * @param ideias Devem ter sido previamente validadas!
+ */
 function desenvolvePraNois(ideias: string[]) {
-  let pronto: boolean
+  const produto: Product = new Product()
   do {
-    const requisitos = extrairRequisitos(ideias)
+    const requisitos = extrairRequisitos(ideias, produto)
     const tecnologias = selecionarTecnologias(requisitos)
-    const produto = implementar(requisitos, tecnologias)
+    produto.implementar(requisitos, tecnologias)
     // TODO: automatizar o que for possível!
-    pronto = validar(produto)
-  } while (!pronto) // nunca fica pronto ¯\_(ツ)_/¯
+  } while (!pronto(produto))
+  // Nunca cheguei nessa parte, nunca fica pronto ¯\_(ツ)_/¯
 }
-					</code></pre>
+          </code></pre>
+
+          <aside class="notes">
+            <ul>
+              <li>
+                Antes de mais nada, é importante que vocês entendam como eu
+                gosto de estruturar meu pensamento quando vou construir uma nova
+                aplicação
+              </li>
+              <li>
+                Validar a ideia é importante porque ninguém trabalha motivado em
+                algo que não acredita que vai trazer resultados ou que fica
+                sempre na mesma / sem evolução
+              </li>
+            </ul>
+          </aside>
         </section>
 
         <section>
           <h2 class="orange">Fase 1</h2>
           <p>Extrair requisitos</p>
+
+          <aside class="notes">
+            <ul>
+              <li>
+                Conversas com os stakeholders
+              </li>
+              <li>
+                Pesquisas de mercado
+              </li>
+            </ul>
+          </aside>
         </section>
 
         <section
@@ -97,6 +172,27 @@ function desenvolvePraNois(ideias: string[]) {
             <li class="fragment">Sem desenvolvedor</li>
             <li class="fragment">Analytics/dados</li>
           </ul>
+
+          <aside class="notes">
+            <ul>
+              <li>
+                Plataforma: ideia de algo utilizado por várias pessoas, com um
+                ecossistema no seu entorno e com capacidade de evolução
+              </li>
+              <li>
+                Landing page: o resultado final (output) da nossa aplicação.
+                Outros exemplos pode ser uma NFe emitida, um DANFe, etc
+              </li>
+              <li>
+                Páginas dinâmicas/sem desolvedor: editor de páginas e espaço pra
+                evolução futura (componentes)
+              </li>
+              <li>
+                Analytics/dados: ingestão, tratamento e apresentação de um
+                grande volume de dados dos usuários dos nossos usuários
+              </li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -122,24 +218,61 @@ function desenvolvePraNois(ideias: string[]) {
             <li>Tempo de resposta</li>
             <li>Time to market</li>
           </ol>
+
+          <aside class="notes">
+            <ul>
+              <li>
+                Talvez sejam importantes em todo projeto, mas nesse são
+                requisitos críticos
+              </li>
+            </ul>
+          </aside>
         </section>
 
         <section>
           <h2 class="orange">Fase 2</h2>
           <p>Selecionar tecnologias</p>
+
+          <aside class="notes">
+            <ul>
+              <li>
+                Entendemos o que nós precisamos construir.
+              </li>
+              <li>
+                Buscamos tecnologias que atendem as nossas necessidades e não o
+                contrário
+              </li>
+            </ul>
+          </aside>
         </section>
 
         <section>
-          <h4 class="orange">Premissas</h4>
+          <p><b class="orange">Premissa:</b> Best tool for the job</p>
           <ul>
-            <li>Usar a melhor ferramenta para o trabalho</li>
             <li>
-              Problemas vão acontecer (evite
-              <a href="https://batmanjs.org/">batman.js</a>)
+              Problemas vão acontecer, então evite usar os
+              <a href="https://batmanjs.org/">batman.js</a> da vida
             </li>
-            <li>Se já está pronto e funciona, use!</li>
-            <li>Ecossistema que já é utilizado pela empresa</li>
+            <li>
+              Se já existe algo pronto e que funciona, use! Lembre-se de focar
+              no seu negócio
+            </li>
+            <li>
+              Aproveite-se do conhecimento que você já possui
+            </li>
           </ul>
+
+          <aside class="notes">
+            <ul>
+              <li>
+                Lembrar de não usar um pool muito grande de tecnologia pra não
+                virar bagunça
+              </li>
+              <li>
+                Quando menor é a equipe, mais aplicáveis são essas restrições
+              </li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -152,6 +285,22 @@ function desenvolvePraNois(ideias: string[]) {
           <img class="stack" src="assets/graphql-logo.png" />
           <img class="stack" src="assets/next-logo.png" />
           <img class="stack" src="assets/react-logo.png" />
+
+          <aside class="notes">
+            <ul>
+              <li>
+                Pool de tecnologias e plataformas utilizadas para construção do
+                Way (primeira fase)
+              </li>
+              <li>
+                Amanhã ou depois pode surgir outro recurso que necessite de
+                ferramentas diferentes
+              </li>
+              <li>
+                Importância de manter serviços desacoplados!
+              </li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -167,8 +316,16 @@ function desenvolvePraNois(ideias: string[]) {
           <aside class="notes">
             <ul>
               <li>
-                Exemplos de serviços: computação (processamento e memória),
-                armazenamento e bancos de dados
+                Um provedor de serviços cloud oferece, como o nome sugere,
+                oferece serviços para construir ou executar aplicações na nuvem
+              </li>
+              <li>
+                Ajuda muito a atender os requisitos não funcionais, colaborando
+                para focar na aplicação (requisitos funcionais)
+              </li>
+              <li>
+                Principais serviços oferecidos: computação (processamento e
+                memória), armazenamento e bancos de dados
               </li>
               <li>
                 Como os serviços são cloud native e foram pensados para o cloud,
@@ -188,10 +345,7 @@ function desenvolvePraNois(ideias: string[]) {
           <h4 class="orange">AWS Lambda</h4>
 
           <ul>
-            <li>
-              Serviço de computação <b class="orange">serverless</b> e
-              <b class="orange">stateless</b>
-            </li>
+            <li>Serviço de computação <b class="orange">serverless</b></li>
             <li>
               Executa pedaços de código - chamados de
               <b class="orange">funções Lambda</b> - dentro de containers, que
@@ -200,18 +354,48 @@ function desenvolvePraNois(ideias: string[]) {
           </ul>
 
           <aside class="notes">
-            Serverless se refere a aplicações onde o gerenciamento e alocação de
-            recursos de servidor são completamente gerenciados pelo provedor
-            cloud. Normalmente, a cobrança é feita com base no uso/consumo
-            destes recursos.
+            <ul>
+              <li>
+                Serverless se refere a aplicações onde o gerenciamento e
+                alocação de recursos de servidor são completamente gerenciados
+                pelo provedor cloud. Normalmente, a cobrança é feita com base no
+                uso/consumo destes recursos.
+              </li>
+              <li>
+                Tudo que você precisa fazer é dizer para o provedor qual código
+                precisa ser executado e ele se encarrega do resto, enviando a
+                conta no final do mês de acordo com o uso.
+              </li>
+              <li>
+                Nos beneficiamos da estrutura excedente para atender gigantes
+                como Netflix, Amazon e afins, tornando o preço competitivo
+              </li>
+            </ul>
           </aside>
         </section>
 
         <section>
-          <img src="assets/lambda-function.png" />
+          <pre><code class="js" data-trim>
+/**
+ * Exemplo de função Lambda, que é invocada para responder
+ * a um evento do cloud provider (ex.: request HTTP)
+ */
+export const handler = async (event, context) => {
+  // Processar a requisição.
+  // Ex.: persistir `event.body` no banco de dados.
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ success: true })
+  }
+}
+          </code></pre>
 
           <aside class="notes">
             <ul>
+              <li>
+                Event: dados da requisição (exemplo: payload request HTTP)
+              </li>
               <li>
                 Context: informações sobre a invocação, função e ambiente de
                 execução
@@ -226,8 +410,13 @@ function desenvolvePraNois(ideias: string[]) {
 
           <ul>
             <li>Amazon Simple Storage Service (<b class="orange">S3</b>)</li>
-            <li>Serviço para armazenamento e recuperação de dados</li>
-            <li>Pode armazenar qualquer coisa</li>
+            <li>
+              Serviço para armazenamento e recuperação de dados (file system)
+            </li>
+            <li>
+              Pode armazenar qualquer coisa numa estrutura conhecida como
+              <b class="orange">bucket</b>
+            </li>
           </ul>
 
           <aside class="notes">
@@ -250,14 +439,26 @@ function desenvolvePraNois(ideias: string[]) {
           </ul>
 
           <aside class="notes">
-            Serverless se refere a aplicações onde o gerenciamento e alocação de
-            recursos de servidor são completamente gerenciados pelo provedor
-            cloud. Normalmente, a cobrança é feita com base no uso/consumo
-            destes recursos.
+            <ul>
+              <li>
+                Bancos relacionais não foram projetados para suportar as cargas
+                de serviços cloud
+              </li>
+              <li>MongoDB é muito caro e não é um serviço gerenciado</li>
+            </ul>
           </aside>
         </section>
 
-        <section data-background-image="assets/aws-diagram.png"></section>
+        <section data-background-image="assets/aws-diagram.png">
+          <aside class="notes">
+            <ul>
+              <li>
+                Conhecendo estes recursos, como podemos utilizá-los para
+                construir a nossa aplicação?
+              </li>
+            </ul>
+          </aside>
+        </section>
 
         <section>
           <img height="100" src="assets/react-logo.png" />
@@ -348,6 +549,14 @@ export default ({ page }) => { ... }
             <li>Alternativa ao REST</li>
             <li>Schema funciona como um contrato entre o cliente o servidor</li>
           </ul>
+
+          <aside class="notes">
+            <ul>
+              <li>Criado pelo Facebook</li>
+              <li>Schema serve como "auto-documentação" da API</li>
+              <li>O client pode obter apenas os dados que está interessado</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -410,7 +619,7 @@ query {
           </p>
           <pre><code class="graphql" data-trim data-noescape>
 mutation {
-  buyItem(input: { name: 'Poké Ball', quantity: 10}) {
+  buyItem(input: { name: 'Poké Ball', quantity: 10 }) {
     success
   }
 }
@@ -424,6 +633,21 @@ mutation {
 
         <section>
           <p>{ hora de mostrar código }</p>
+
+          <aside class="notes">
+            <ul>
+              <li>
+                Monorepo porque o projeto ainda é pequeno - se der certo e
+                começar a ficar pesado, ficamos felizes em mudar por dor de
+                crescimento
+              </li>
+              <li>Clean architecture</li>
+              <li>
+                Indicadores e ferramentas de monitoramento são essenciais para
+                manter serviços cloud
+              </li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -440,6 +664,14 @@ mutation {
             <li>Infra como código (YAML + JavaScript)</li>
             <li>Modelo de componentes</li>
           </ul>
+
+          <aside class="notes">
+            <ul>
+              <li>
+                Não confundir com modelo serverless
+              </li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -510,6 +742,9 @@ class Blog extends Component {
               style="right: 0; top: 0"
               src="assets/qrcode.png"
             />
+            <p>
+              <a href="http://tzf.im/talk-way">tzf.im/talk-way</a>
+            </p>
           </div>
         </section>
 
